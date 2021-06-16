@@ -8,7 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import * as serviceWorker from './serviceWorker';
 import reducers from './reducers';
 import rootSaga from './sagas';
-import App from './components/App';
+import AppContainer from './containers/AppContainer';
 import './styles/index.scss';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -30,7 +30,7 @@ sagaMiddleware.run(rootSaga);
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <App />
+      <AppContainer />
     </React.StrictMode>
   </Provider>,
   document.getElementById('root'),

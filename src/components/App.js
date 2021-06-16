@@ -1,28 +1,18 @@
 import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
-import {
-  initApp,
-  updateAppLogo,
-} from '../actions';
-import {
-  getAppLogo,
-  getAppSecret,
-} from '../selectors';
 
 const App = ({
   appLogo,
   appSecret,
-  initApp: _initApp,
-  updateAppLogo: _updateAppLogo,
+  initApp,
+  updateAppLogo,
 }) => {
   useEffect(() => {
     // initialize app
-    _initApp('aim for success');
-  }, [_initApp]);
+    initApp('aim for success');
+  }, [initApp]);
 
-  const onUpdateLogo = useCallback(() => _updateAppLogo(), [_updateAppLogo]);
+  const onUpdateLogo = useCallback(() => updateAppLogo(), [updateAppLogo]);
 
   return (
     <div className="App">
@@ -59,19 +49,4 @@ App.defaultProps = {
   updateAppLogo: f => f,
 };
 
-const mapStateToProps = state => {
-  const appSecret = getAppSecret(state);
-  const appLogo = getAppLogo(state);
-
-  return {
-    appSecret,
-    appLogo,
-  };
-};
-
-const mapActionsToProps = {
-  initApp,
-  updateAppLogo,
-};
-
-export default connect(mapStateToProps, mapActionsToProps)(App);
+export default App;
